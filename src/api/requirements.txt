@@ -4,3 +4,4 @@ Flask
 flask-cors
 flake8
 python-dotenv
+moviepy

@@ -5,6 +5,8 @@ import boto3
 from botocore.exceptions import ClientError
 from botocore.client import Config
 from pytube import YouTube
+# os.environ["IMAGEIO_FFMPEG_EXE"] = "./bin/ffmpeg"
+# from moviepy.editor import *
 import os
 
 app = Flask(__name__)
@@ -23,11 +25,23 @@ def download_yb() -> dict():
     stream = yt.streams.filter(only_audio=True).first()
     name = yt.title
     thumbnail_url = yt.thumbnail_url
-    stream.download('./download')
-    new_name = name.strip().lower().replace(' ', '.')
+    new_name = name.strip().lower().replace(' ', '_')
+    new_name = new_name.replace(':', '_')
+    stream.download('./download', filename=new_name)
     path = "./download/"
-    os.rename(path+name+".mp4", path+new_name+".mp4")
     obj_name = new_name+".mp4"
+
+    '''
+        This is for convert mp4 for mp3 but the server
+        needs the lib ffmpeg instaled to work well.
+    '''
+    # mp4_file = path+obj_name
+    # mp3_file = path+new_name+".mp3"
+    # video_clip = VideoFileClip(mp4_file)
+    # audio_clip = video_clip.audio()
+    # audio_clip.write_audiofile(mp3_file)
+    # audio_clip.close()
+    # video_clip.close()
 
     try:
 
