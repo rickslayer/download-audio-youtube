@@ -20,8 +20,9 @@ def download_yb() -> dict():
     param = request.get_json()
     url = param.get('url')
     yt = YouTube(url)
-    stream = yt.streams.first()
+    stream = yt.streams.filter(only_audio=True).first()
     name = yt.title
+    thumbnail_url = yt.thumbnail_url
     stream.download('./download')
     new_name = name.strip().lower().replace(' ', '.')
     path = "./download/"
@@ -52,7 +53,8 @@ def download_yb() -> dict():
             url=url,
             name=name,
             new_name=new_name,
-            download_url=download_url
+            download_url=download_url,
+            thumbnail_url=thumbnail_url
         )
     except ClientError as e:
         return jsonify(

@@ -27,6 +27,13 @@
             download>
             Download
           </v-btn>
+          <v-img
+            :src="imgThumb"
+            :lazy-src="imgThumb"
+            :aspect-ratio="16/9"
+            v-show="showBtn"
+          >
+          </v-img>
         </v-col>
          <v-col cols="12" class="text-center">
           <v-progress-circular
@@ -55,6 +62,7 @@ const axios = require('axios')
       url_download:"",
       showBtn: false,
       showProcess:false,
+      imgThumb:"https://i.ytimg.com/vi/tfSi3foze3Q/maxresdefault.jpg",
     }),
     methods: {
       changeUrl(val) {
@@ -75,6 +83,7 @@ const axios = require('axios')
             this.url_download = response.data.download_url
             this.showBtn = true
             this.showProcess = false
+            this.imgThumb = response.data.thumbnail_url
           }
         })
         .catch((error) => {
