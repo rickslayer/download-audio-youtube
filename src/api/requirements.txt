@@ -3,4 +3,4 @@ git+https://gitlab.com/obuilds/public/pytube@ob-v1
 Flask
 flask-cors
 flake8
-moviepy
+python-dotenv
