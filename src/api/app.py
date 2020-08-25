@@ -31,6 +31,8 @@ def download_yb() -> dict():
     path = "./download/"
     obj_name = new_name+".mp4"
 
+    upload_file_repo(obj_name)
+
     '''
         This is for convert mp4 for mp3 but the server
         needs the lib ffmpeg instaled to work well.
@@ -43,6 +45,11 @@ def download_yb() -> dict():
     # audio_clip.close()
     # video_clip.close()
 
+def upload_file_repo(file: str) -> str:
+    '''
+        You can choose another repo if you want.
+        For the purpose of this example, I used AWS S3
+    '''
     try:
 
         s3 = boto3.client(
@@ -52,24 +59,19 @@ def download_yb() -> dict():
             config=Config(signature_version='s3v4'))
 
         s3.upload_file(
-            './download/'+obj_name,
+            './download/'+file,
             os.environ.get('AWS_BUCKET'),
-            obj_name)
+            file)
 
-        os.remove(path+obj_name)
+        os.remove(path+file)
 
         download_url = s3.generate_presigned_url(
             'get_object',
-            Params={'Bucket': os.environ.get('AWS_BUCKET'), 'Key': obj_name},
+            Params={'Bucket': os.environ.get('AWS_BUCKET'), 'Key': file},
             ExpiresIn=3600)
 
-        return jsonify(
-            url=url,
-            name=name,
-            new_name=new_name,
-            download_url=download_url,
-            thumbnail_url=thumbnail_url
-        )
+        return download_url
+
     except ClientError as e:
         return jsonify(
             error=True,
