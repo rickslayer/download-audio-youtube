@@ -24,5 +24,8 @@ jobs:
       run: |
         cd src/frontend
         npm run build
-        mkdir dist
-        mv /dist dist
+        git config user.name rickslayer
+        git config user.email paulo@actio.net.br
+        git add dist
+        git commit -m "generated"
+        git push
