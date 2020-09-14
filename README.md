@@ -6,7 +6,7 @@ A Little Project to make easy download audio files from youtube url
 | Production | ![Master](https://github.com/rickslayer/download-audio-youtube/badge.svg?branch=master) |
 
 
-### Author
+### Authors
 
 | Name                  | Github User                     | Role | E-mail                           |
 |-----------------------|---------------------------------|------|----------------------------------|
