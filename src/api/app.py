@@ -24,14 +24,14 @@ def download_yb() -> dict():
     yt = YouTube(url)
     stream = yt.streams.filter(only_audio=True).first()
     name = yt.title
-    thumbnail_url = yt.thumbnail_url
+    # thumbnail_url = yt.thumbnail_url
     new_name = name.strip().lower().replace(' ', '_')
     new_name = new_name.replace(':', '_')
     stream.download('./download', filename=new_name)
     path = "./download/"
     obj_name = new_name+".mp4"
 
-    upload_file_repo(obj_name)
+    upload_file_repo(obj_name, path)
 
     '''
         This is for convert mp4 for mp3 but the server
@@ -45,7 +45,8 @@ def download_yb() -> dict():
     # audio_clip.close()
     # video_clip.close()
 
-def upload_file_repo(file: str) -> str:
+
+def upload_file_repo(file: str, path: str) -> str:
     '''
         You can choose another repo if you want.
         For the purpose of this example, I used AWS S3
