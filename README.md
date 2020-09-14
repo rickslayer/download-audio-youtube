@@ -12,3 +12,11 @@ A Little Project to make easy download audio files from youtube url
 |-----------------------|---------------------------------|------|----------------------------------|
 | Paulo Ricardo Almeida | https://github.com/rickslayer   |Owner | contact@prra.dev                 |
 
+
+### API
+
+ 1. Build with Python and Flask
+
+### FRONTEND
+
+ 1. Build with Vue.js
