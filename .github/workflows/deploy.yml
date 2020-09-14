@@ -17,9 +17,12 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Install Packages
       run: |
-        cd src/frontend 
+        cd src/frontend
         npm install
+        npm audit fix
     - name: Build page
       run: |
-        cd src/frontend 
+        cd src/frontend
         npm run build
+        mkdir dist
+        mv /dist dist
