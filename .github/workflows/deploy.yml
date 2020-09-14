@@ -24,8 +24,7 @@ jobs:
       run: |
         cd src/frontend
         npm run build
-        git config user.name rickslayer
-        git config user.email paulo@actio.net.br
-        git add dist
-        git commit -m "generated"
-        git push
+    - name: deleting dist
+      uses: JesseTG/rm@v1.0.2
+      with:
+        path: /src/frontend/dist
